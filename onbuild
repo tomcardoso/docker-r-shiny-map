@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e # fail fast
+
+# refresh package index
+apt-get update -q
+
+# install "packages"
+apt-get install -qy libgdal-dev
+
+# reduce the image size by removing unnecessary Apt files
+apt-get autoclean
