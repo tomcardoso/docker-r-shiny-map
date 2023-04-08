@@ -8,7 +8,9 @@ ENV LANG C.UTF-8
 # Set default timezone
 ENV TZ UTC
 
-RUN apt-get install -qy --no-install-recommends libgdal-dev \
+RUN apt-get update -q \
+ && apt-get install -qy --no-install-recommends \
+      libgdal-dev \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
