@@ -22,23 +22,20 @@ RUN /usr/bin/R --no-save --quiet --no-echo -e "install.packages('renv', quiet = 
 # Initialize renv while still empty
 RUN /usr/bin/R --no-save --quiet --no-echo -e "renv::init()"
 
-RUN /usr/bin/R --no-save --quiet --no-echo -e "renv:::renv_paths_cache()"
-RUN /usr/bin/R --no-save --quiet --no-echo -e "renv:::renv_paths_library()"
+RUN /usr/bin/R --no-save --quiet --no-echo -e "renv::renv_paths_root()"
+RUN /usr/bin/R --no-save --quiet --no-echo -e "renv::renv_paths_cache()"
+RUN /usr/bin/R --no-save --quiet --no-echo -e "renv::renv_paths_library()"
 
 # RUN /usr/bin/R --no-save -e "p <- renv::paths; print(p$library())"
 
 # Now copy over lockfile
 COPY renv.lock renv.lock
 
-# Expect to see an renv subfolder
-# RUN echo $(ls -R /)
-# RUN echo $(ls -R /app)
-
 # Move previously-installed renv files from $RENV_PATHS_ROOT to image
-# COPY ${RENV_PATHS_ROOT} /.cache/R/renv
+COPY ${RENV_PATHS_ROOT}/cache /root/.cache/R/renv/cache
 
 # Run a restore
-# RUN /usr/bin/R --no-save -e "renv::restore()"
+RUN /usr/bin/R --no-save -e "renv::restore()"
 
 # Need to make sure Rscript can run
 # Then make sure renv is installed
