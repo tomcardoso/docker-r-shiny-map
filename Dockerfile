@@ -1,6 +1,6 @@
 ARG RENV_PATHS_ROOT
 
-FROM ubuntu:22.04
+FROM virtualstaticvoid/heroku-docker-r:build
 
 # Set default locale
 ENV LANG C.UTF-8
@@ -26,7 +26,7 @@ COPY renv/settings.dcf renv/settings.dcf
 # Move previously-installed renv files from $RENV_PATHS_ROOT to image
 # COPY $RENV_PATHS_ROOT
 
-RUN R --no-save --no-echo -e "renv::paths$root()"
+RUN /usr/bin/R --no-save --no-echo -e "renv::paths$root()"
 # RUN R --no-save --no-echo -e "install.packages('renv', repos = c(CRAN = 'https://cloud.r-project.org'))"
 
 # RUN R --no-save --no-echo -e "install.packages('remotes', repos = c(CRAN = 'https://cloud.r-project.org'))"
@@ -38,4 +38,4 @@ RUN R --no-save --no-echo -e "renv::paths$root()"
 # Then make sure renv is installed
 # Then copy from $RENV_PATHS_ROOT to the output of renv::paths$root()
 
-CMD ["Rscript", "--no-save"]
+CMD ["/usr/bin/R", "--no-save"]
