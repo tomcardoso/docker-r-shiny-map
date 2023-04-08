@@ -1,4 +1,4 @@
-ARG RENV_PATHS_ROOT
+ARG RENV_CACHE_PATH
 
 FROM ghcr.io/virtualstaticvoid/heroku-docker-r:4.2.2
 
@@ -31,14 +31,10 @@ RUN /usr/bin/R --no-save --quiet --no-echo -e "renv::renv_paths_library()"
 # Now copy over lockfile
 COPY renv.lock renv.lock
 
-# Move previously-installed renv files from $RENV_PATHS_ROOT to image
-COPY ${RENV_PATHS_ROOT}/cache /root/.cache/R/renv/cache
+# Move previously-installed renv files from $RENV_CACHE_PATH to image
+COPY ${RENV_CACHE_PATH} /root/.cache/R/renv/cache
 
 # Run a restore
 RUN /usr/bin/R --no-save -e "renv::restore()"
-
-# Need to make sure Rscript can run
-# Then make sure renv is installed
-# Then copy from $RENV_PATHS_ROOT to the output of renv::paths$root()
 
 CMD ["/usr/bin/R", "--no-save"]
