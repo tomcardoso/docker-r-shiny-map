@@ -1,1 +1,1 @@
-FROM virtualstaticvoid/heroku-docker-r:4.2.2-shiny
+FROM ghcr.io/virtualstaticvoid/heroku-docker-r:4.2.2-shiny
