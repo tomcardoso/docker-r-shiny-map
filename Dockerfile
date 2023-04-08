@@ -1,6 +1,6 @@
 ARG RENV_PATHS_ROOT
 
-FROM virtualstaticvoid/heroku-docker-r:build
+FROM virtualstaticvoid/heroku-docker-r
 
 # Set default locale
 ENV LANG C.UTF-8
