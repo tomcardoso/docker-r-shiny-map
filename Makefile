@@ -16,4 +16,4 @@ run:
 
 publish:
 
-	docker push ghcr.io/tomcardoso/docker-r-shiny-map:latest
+	docker push tomcardoso/docker-r-shiny-map:latest
