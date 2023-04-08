@@ -26,6 +26,9 @@ COPY renv/settings.dcf renv/settings.dcf
 # Move previously-installed renv files from $RENV_PATHS_ROOT to image
 # COPY $RENV_PATHS_ROOT
 
+RUN R --no-save --no-echo -e "renv::paths$root()"
+# RUN R --no-save --no-echo -e "install.packages('renv', repos = c(CRAN = 'https://cloud.r-project.org'))"
+
 # RUN R --no-save --no-echo -e "install.packages('remotes', repos = c(CRAN = 'https://cloud.r-project.org'))"
 # RUN R --no-save --no-echo -e "remotes::install_github('rstudio/renv@${RENV_VERSION}')"
 # RUN R --no-save --no-echo -e "renv::restore()"
