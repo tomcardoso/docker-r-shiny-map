@@ -1,1 +1,1 @@
-FROM virtualstaticvoid/heroku-docker-r:build
+FROM virtualstaticvoid/heroku-docker-r:4.2.2-shiny
