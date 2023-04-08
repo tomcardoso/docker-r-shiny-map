@@ -14,3 +14,7 @@ RUN apt-get update -q \
 
 # set /app as working directory
 WORKDIR /app
+
+FROM ghcr.io/virtualstaticvoid/heroku-docker-r:build
+
+COPY --from=0 . /app
