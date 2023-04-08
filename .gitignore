@@ -78,4 +78,3 @@ vignettes/*.pdf
 # End of https://www.toptal.com/developers/gitignore/api/macos,r
 
 .dropbox
-renv/
