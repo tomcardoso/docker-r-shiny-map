@@ -22,7 +22,7 @@ RUN /usr/bin/R --no-save --quiet -e "install.packages('renv', quiet = TRUE)"
 # Initialize renv while still empty
 RUN /usr/bin/R --no-save --quiet -e "renv::init()"
 
-RUN /usr/bin/R --no-save -e "print(renv::paths$root())"
+# RUN /usr/bin/R --no-save -e "print(renv::paths$root())"
 
 # Now copy over lockfile
 COPY renv.lock renv.lock
