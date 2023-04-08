@@ -1,6 +1,6 @@
 ARG RENV_PATHS_ROOT
 
-FROM virtualstaticvoid/heroku-docker-r:4.2.2
+FROM ghcr.io/virtualstaticvoid/heroku-docker-r:4.2.2
 
 # Set default locale
 ENV LANG C.UTF-8
@@ -33,7 +33,7 @@ COPY renv.lock renv.lock
 RUN echo $(ls -R /.cache/R/)
 
 # Move previously-installed renv files from $RENV_PATHS_ROOT to image
-# COPY $RENV_PATHS_ROOT
+# COPY ${RENV_PATHS_ROOT} /.cache/R/renv
 
 # Run a restore
 # RUN /usr/bin/R --no-save -e "renv::restore()"
