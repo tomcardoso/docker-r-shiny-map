@@ -22,9 +22,9 @@ RUN /usr/bin/R --no-save --quiet --no-echo -e "install.packages('renv', quiet = 
 # Initialize renv while still empty
 RUN /usr/bin/R --no-save --quiet --no-echo -e "renv::init()"
 
-RUN /usr/bin/R --no-save --quiet --no-echo -e "renv::renv_paths_root()"
-RUN /usr/bin/R --no-save --quiet --no-echo -e "renv::renv_paths_cache()"
-RUN /usr/bin/R --no-save --quiet --no-echo -e "renv::renv_paths_library()"
+RUN /usr/bin/R --no-save --quiet --no-echo -e "renv:::renv_paths_root()"
+RUN /usr/bin/R --no-save --quiet --no-echo -e "renv:::renv_paths_cache()"
+RUN /usr/bin/R --no-save --quiet --no-echo -e "renv:::renv_paths_library()"
 
 # RUN /usr/bin/R --no-save -e "p <- renv::paths; print(p$library())"
 
