@@ -2,12 +2,6 @@ ARG RENV_PATHS_ROOT
 
 FROM ghcr.io/virtualstaticvoid/heroku-docker-r:4.2.2
 
-# Set default locale
-ENV LANG C.UTF-8
-
-# Set default timezone
-ENV TZ UTC
-
 RUN apt-get update -q \
  && apt-get install -qy --no-install-recommends \
       libgdal-dev \
@@ -23,16 +17,19 @@ COPY renv/activate.R renv/activate.R
 COPY renv/settings.dcf renv/settings.dcf
 
 # Install renv
-RUN /usr/bin/R --no-save -e "install.packages('renv', quiet = TRUE)"
+RUN /usr/bin/R --no-save --quiet -e "install.packages('renv', quiet = TRUE)"
 
 # Initialize renv while still empty
-RUN /usr/bin/R --no-save -e "renv::init()"
+RUN /usr/bin/R --no-save --quiet -e "renv::init()"
+
+RUN /usr/bin/R --no-save -e "print(renv::paths$root())"
 
 # Now copy over lockfile
 COPY renv.lock renv.lock
 
 # Expect to see an renv subfolder
-RUN echo $(ls -R /.cache/R/)
+RUN echo $(ls -R /)
+RUN echo $(ls -R /app)
 
 # Move previously-installed renv files from $RENV_PATHS_ROOT to image
 # COPY ${RENV_PATHS_ROOT} /.cache/R/renv
