@@ -1,6 +1,6 @@
-ARG RENV_CACHE_PATH
-
 FROM ghcr.io/virtualstaticvoid/heroku-docker-r:4.2.2
+
+ARG RENV_CACHE_PATH
 
 RUN apt-get update -q \
  && apt-get install -qy --no-install-recommends \
