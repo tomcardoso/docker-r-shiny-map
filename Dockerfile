@@ -17,19 +17,22 @@ COPY renv/activate.R renv/activate.R
 COPY renv/settings.dcf renv/settings.dcf
 
 # Install renv
-RUN /usr/bin/R --no-save --quiet -e "install.packages('renv', quiet = TRUE)"
+RUN /usr/bin/R --no-save --quiet --no-echo -e "install.packages('renv', quiet = TRUE)"
 
 # Initialize renv while still empty
-RUN /usr/bin/R --no-save --quiet -e "renv::init()"
+RUN /usr/bin/R --no-save --quiet --no-echo -e "renv::init()"
 
-# RUN /usr/bin/R --no-save -e "print(renv::paths$root())"
+RUN /usr/bin/R --no-save --quiet --no-echo -e "renv:::renv_paths_cache()"
+RUN /usr/bin/R --no-save --quiet --no-echo -e "renv:::renv_paths_library()"
+
+# RUN /usr/bin/R --no-save -e "p <- renv::paths; print(p$library())"
 
 # Now copy over lockfile
 COPY renv.lock renv.lock
 
 # Expect to see an renv subfolder
-RUN echo $(ls -R /)
-RUN echo $(ls -R /app)
+# RUN echo $(ls -R /)
+# RUN echo $(ls -R /app)
 
 # Move previously-installed renv files from $RENV_PATHS_ROOT to image
 # COPY ${RENV_PATHS_ROOT} /.cache/R/renv
