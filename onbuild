@@ -2,7 +2,7 @@
 set -e # fail fast
 
 # refresh package index
-apt-get update -qs
+apt-get update -q
 apt-get install -qy --no-install-recommends libgdal-dev
 apt-get clean
 rm -rf /var/lib/apt/lists/*
