@@ -1,8 +1,5 @@
 FROM ubuntu:22.04
 
-ARG R_VERSION
-ARG CRAN_VERSION
-
 # Set default locale
 ENV LANG C.UTF-8
 
