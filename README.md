@@ -4,14 +4,19 @@ This Docker image will pre-build the packages necessary for running an R Shiny m
 
 The final, generated image includes the following packages:
 ```
-here
-shiny
-leaflet
+desc
+upstartr
+tidyr
+readr
 dplyr
-lubridate
 stringr
-scales
+tibble
+feather
+jsonlite
 glue
+shiny
+bslib
+leaflet
 ```
 
 ### Usage
